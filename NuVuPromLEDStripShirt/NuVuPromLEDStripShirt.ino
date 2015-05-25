@@ -19,7 +19,8 @@ void setup() {
 }
 
 void loop() {
-	whiteLight(0, 20, 1000);
+	// whiteLight(0, 20, 35);
+	rainbowCycle(10);
 }
 
 

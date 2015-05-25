@@ -7,10 +7,12 @@
 
 #define randomMax 15
 
+// initialize LED Strips
 Adafruit_NeoPixel leftStrip =  Adafruit_NeoPixel(LEDs, leftPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel rightStrip = Adafruit_NeoPixel(LEDs, rightPin, NEO_GRB + NEO_KHZ800);
 
 void setup() {
+	// initialize LED Strips
 	leftStrip.begin();
 	rightStrip.begin();
 }

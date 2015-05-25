@@ -6,8 +6,10 @@ Work in progress.
 - a shirt that fits you
 - Adafruit Neopixel-compatible LEDs in two equal strips
 - A working Arduino (tested with Uno R3, an Uno knockoff or any pretty-standard hardware should work just fine)
+
 ## Instructions:
 Not finished.
+
 ## Notes:
 Stolen from the NeoPixel SourceCode:
 ```

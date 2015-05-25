@@ -5,37 +5,21 @@
 
 #define LEDs 14
 
-#define randomMax 15
-
 // initialize LED Strips
 Adafruit_NeoPixel leftStrip =  Adafruit_NeoPixel(LEDs, leftPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel rightStrip = Adafruit_NeoPixel(LEDs, rightPin, NEO_GRB + NEO_KHZ800);
 
 void setup() {
+	// initialize Serial
+	Serial.begin(9600);
+
 	// initialize LED Strips
 	leftStrip.begin();
 	rightStrip.begin();
 }
 
 void loop() {
-	for(int i = 0;i<=randomMax;i++) {
-		leftStrip.show();
-		rightStrip.show();
-		for(int j = 0;j<LEDs;j++) {
-			leftStrip.setPixelColor(j, leftStrip.Color(i, i, i));
-			rightStrip.setPixelColor(j, rightStrip.Color(i, i, i));
-			delay(5);
-		}
-	}
-	for(int i = randomMax;i>=0;i--) {
-		leftStrip.show();
-		rightStrip.show();
-		for(int j = 0;j<LEDs;j++) {
-			leftStrip.setPixelColor(j, leftStrip.Color(i, i, i));
-			rightStrip.setPixelColor(j, rightStrip.Color(i, i, i));
-			delay(5);
-		}
-	}
+	whiteLight(0, 20, 1000);
 }
 
 
@@ -52,6 +36,30 @@ for(j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
 	leftStrip.show();
 	rightStrip.show();
 	delay(wait);
+	}
+}
+
+// fade in and out white light at specified min, max, fadeInOut time length
+void whiteLight(int minBrightness, int maxBrightness, int fadeInOut) {
+	Serial.println(millis());
+	for(int i = minBrightness;i<=maxBrightness;i++) {
+		leftStrip.show();
+		rightStrip.show();
+		for(int j = 0;j<LEDs;j++) {
+			leftStrip.setPixelColor(j, leftStrip.Color(i, i, i));
+			rightStrip.setPixelColor(j, rightStrip.Color(i, i, i));
+			delay(fadeInOut / (LEDs * 2));
+			Serial.println(fadeInOut / (LEDs * 2));
+		}
+	}
+	for(int i = maxBrightness;i>=minBrightness;i--) {
+		leftStrip.show();
+		rightStrip.show();
+		for(int j = 0;j<LEDs;j++) {
+			leftStrip.setPixelColor(j, leftStrip.Color(i, i, i));
+			rightStrip.setPixelColor(j, rightStrip.Color(i, i, i));
+			delay(fadeInOut / (LEDs * 2));
+		}
 	}
 }
 
